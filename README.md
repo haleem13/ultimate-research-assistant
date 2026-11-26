@@ -31,7 +31,7 @@ The same workflow can help with MRI segmentation, fastMRI reconstruction and ali
 Open your research project in your agent, copy this repository's URL from GitHub, and paste this prompt with the URL filled in:
 
 ```text
-Install Ultimate Research Assistant from <PASTE GITHUB REPOSITORY URL HERE>
+Install Ultimate Research Assistant from https://github.com/haleem13/ultimate-research-assistant
 for this research project. Use the project-level skills directory for
 the agent I am using. Copy SKILL.md and the entire references/ folder
 into an ultimate-research-assistant directory there. If a version is
