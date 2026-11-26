@@ -22,17 +22,53 @@ A useful first response might be:
 | **Implement and verify** | Follow the agreed procedure and inspect the actual inputs and saved outputs at each stage. Check independently which samples were used for fitting, prediction, and evaluation. |
 | **Report and advise** | Explain what ran, what was verified, and what remains uncertain. Offer creative follow-up ideas with the smallest informative test and explain how its outcomes could change your interpretation. You decide which ideas to pursue. |
 
-The same workflow can help with MRI segmentation, fastMRI reconstruction and aliasing, EMI removal, and molecular property analysis. See the [research examples](ultimate-research-assistant/references/examples.md) for how the questions and checks change across tasks.
+The same workflow can help with MRI segmentation, fastMRI reconstruction and aliasing, EMI removal, and molecular property analysis. See the [research examples](references/examples.md) for how the questions and checks change across tasks.
 
-## Get started
+## Install
 
-1. Download or clone this repository.
-2. Copy the [ultimate-research-assistant](ultimate-research-assistant/) folder into a skills directory supported by your agent. For project-level use with Codex, place it at `.agents/skills/ultimate-research-assistant/` in your research project.
-3. Invoke `$ultimate-research-assistant` in Codex, or ask a compatible agent to use the skill for your task. Point it to the project files and share any scientific decisions you've already made.
+Download the repository from **Code > Download ZIP** on GitHub and extract it, or clone it using the URL under **Code**. Open a terminal in the directory containing `SKILL.md` and `references/`.
 
-The skill is Markdown. Literature lookup and experiment execution use the tools and permissions available in your agent.
+| Agent | Install in one research project | Install for all your projects |
+| --- | --- | --- |
+| Codex | `.agents/skills/` | `~/.agents/skills/` |
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` |
 
-## Repository contents
+Create an `ultimate-research-assistant` folder under the selected destination and copy `SKILL.md` and the entire `references/` folder into it. Project paths are relative to your research project. [Installation path reference](https://developers.openai.com/api/reference/cli)
 
-- [Ultimate Research Assistant](ultimate-research-assistant/SKILL.md) is the general-purpose skill.
-- [Verify Intent and Data Flow](verify-intent-and-data-flow/SKILL.md) is the original MRI-specific skill, with detailed checks for EMI subtraction and reconstruction.
+**Windows PowerShell**
+
+```powershell
+$destination = 'C:\path\to\research-project\.agents\skills\ultimate-research-assistant'
+New-Item -ItemType Directory -Force -Path $destination | Out-Null
+Copy-Item -LiteralPath './SKILL.md', './references' -Destination $destination -Recurse
+```
+
+**macOS or Linux**
+
+```sh
+destination="/path/to/research-project/.agents/skills/ultimate-research-assistant"
+mkdir -p "$destination"
+cp -R ./SKILL.md ./references "$destination/"
+```
+
+For Claude Code, replace `.agents` with `.claude`. For an all-projects install, use your home directory as the base instead of the research project.
+
+## Use it
+
+Start a new session in your research project. Invoke `$ultimate-research-assistant` in Codex or `/ultimate-research-assistant` in Claude Code. Include the project files you want the agent to inspect and the choices you have already made.
+
+```text
+Review the project files and relevant primary papers for this experiment.
+Tell me which scientific choices are settled and which need my input.
+Recommend options with tradeoffs and show the inputs, outputs, and checks
+for every stage. Wait for my answers before implementing anything.
+```
+
+Once the open choices are resolved, authorize the agreed work. The agent should report what it verified and suggest a creative follow-up with a small test that could change your interpretation.
+
+If the skill does not appear, check that `SKILL.md` is directly inside the installed `ultimate-research-assistant` folder and start a new session. Literature lookup and experiment execution depend on the tools and permissions available in your agent.
+
+## Skill files
+
+- [SKILL.md](SKILL.md) contains the workflow and decision rules.
+- [Research examples](references/examples.md) shows how to apply them across research tasks.
